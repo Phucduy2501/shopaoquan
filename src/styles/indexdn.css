@@ -1,0 +1,195 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", serif;
+}
+
+.matkhau {
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.nhap {
+    border-bottom: 2px solid white;
+    width: 255px;
+    margin-left: 85px;
+    margin-top: 20px;
+}
+
+#tendangnhap {
+    width: 231px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: white;
+    flex-grow: 1;
+}
+
+#email {
+    width: 231px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: white;
+    flex-grow: 1;
+}
+
+#pass {
+    width: 205px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: white;
+    flex-grow: 1;
+}
+
+#pass1 {
+    width: 205px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: white;
+    flex-grow: 1;
+}
+
+#pass2 {
+    width: 205px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: white;
+    flex-grow: 1;
+}
+
+#mkm {
+    width: 205px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: white;
+    flex-grow: 1;
+}
+
+#pass4 {
+    width: 205px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: white;
+    flex-grow: 1;
+}
+
+.matkhau {
+    border-bottom: 2px solid white;
+    width: 255px;
+    margin-left: 85px;
+}
+
+.nhap i {
+    font-size: 18px;
+    color: white;
+}
+
+.matkhau i {
+    font-size: 18px;
+    color: white;
+}
+
+#dnp {
+    width: 135px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 550;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(129, 23, 4, 0.897);
+    color: white;
+    margin-top: 30px;
+}
+
+#dnp:hover {
+    background-color: rgba(129, 23, 4, 1);
+}
+
+.quenmk {
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.quenmk:hover {
+    text-decoration: underline;
+}
+
+.dangnhap h1 {
+    margin: 0;
+    /* margin-bottom: 20px; */
+    color: white;
+}
+
+.dangnhap {
+    margin-bottom: 20px;
+}
+
+.dangnhap {
+    width: 480px;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    padding: 20px;
+    margin: auto;
+    border-radius: 10px;
+    position: relative;
+}
+
+#wrapper {
+    background-image: url("../assets/635a940a-7ae7-435d-b088-43c2aadc902b.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vh;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.daukh a i {
+    font-size: 20px;
+    color: white;
+}
+
+.daukh {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 30px;
+    left: 60px;
+}
+
+.tkmk {
+    display: flex;
+    gap: 45px;
+    align-items: center;
+    justify-content: center;
+}
