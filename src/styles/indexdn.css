@@ -1,138 +1,122 @@
-* {
-    box-sizing: border-box;
+html,
+body {
+    height: 100%;
 }
 
 body {
-    font-family: "Roboto", serif;
+    margin: 0;
+    font-family: "Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
 }
 
+
+/* KHUNG NỀN chiếm đúng toàn bộ viewport, không bị thanh địa chỉ/scroll ảnh hưởng */
+
+#wrapper {
+    position: fixed;
+    /* ghim kín màn hình */
+    inset: 0;
+    /* top/right/bottom/left = 0 */
+    min-height: 100svh;
+    /* svh/dvh chống lệch trên mobile & DevTools */
+    width: 100vw;
+    display: grid;
+    place-items: center;
+    /* căn giữa tuyệt đối */
+    padding: 16px;
+    /* chừa mép ở mobile */
+    background: url("../assets/635a940a-7ae7-435d-b088-43c2aadc902b.png") center/cover no-repeat;
+}
+
+
+/* tránh trang tự cuộn làm lệch tâm */
+
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+/* (tuỳ chọn) tăng tương phản nếu nền mạnh */
+
+.hero-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, .35), rgba(0, 0, 0, .65));
+    pointer-events: none;
+}
+
+
+/* CARD đăng nhập (giữ phần bạn đã chỉnh trước đó) */
+
+.dangnhap {
+    width: clamp(320px, 28vw, 560px);
+    background: rgba(0, 0, 0, .82);
+    color: #fff;
+    border-radius: 12px;
+    padding: clamp(16px, 1.6vw, 28px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, .35);
+    text-align: center;
+}
+
+.dangnhap h1 {
+    margin: 0 0 clamp(10px, 1vw, 16px);
+    font-size: clamp(20px, 1.6vw, 28px);
+    line-height: 1.25;
+}
+
+
+/* Input rows */
+
+.nhap,
 .matkhau {
-    cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    border-bottom: 2px solid #fff;
+    padding: clamp(8px, .8vw, 14px) 2px;
+    margin: clamp(10px, 1vw, 16px) 0;
 }
 
-.nhap {
-    border-bottom: 2px solid white;
-    width: 255px;
-    margin-left: 85px;
-    margin-top: 20px;
+.nhap,
+.matkhau input {
+    height: clamp(32px, 2.4vw, 44px);
+    width: 100%;
 }
 
-#tendangnhap {
-    width: 231px;
-    padding: 5px;
-    font-size: 16px;
-    background-color: transparent;
-    border: 0;
-    outline: 0;
-    color: white;
-    flex-grow: 1;
-}
 
-#email {
-    width: 231px;
-    padding: 5px;
-    font-size: 16px;
-    background-color: transparent;
-    border: 0;
-    outline: 0;
-    color: white;
-    flex-grow: 1;
-}
+/* Inputs */
 
-#pass {
-    width: 205px;
-    padding: 5px;
-    font-size: 16px;
-    background-color: transparent;
-    border: 0;
-    outline: 0;
-    color: white;
-    flex-grow: 1;
-}
-
-#pass1 {
-    width: 205px;
-    padding: 5px;
-    font-size: 16px;
-    background-color: transparent;
-    border: 0;
-    outline: 0;
-    color: white;
-    flex-grow: 1;
-}
-
-#pass2 {
-    width: 205px;
-    padding: 5px;
-    font-size: 16px;
-    background-color: transparent;
-    border: 0;
-    outline: 0;
-    color: white;
-    flex-grow: 1;
-}
-
-#mkm {
-    width: 205px;
-    padding: 5px;
-    font-size: 16px;
-    background-color: transparent;
-    border: 0;
-    outline: 0;
-    color: white;
-    flex-grow: 1;
-}
-
+#tendangnhap,
+#email,
+#pass,
+#pass1,
+#pass2,
+#mkm,
 #pass4 {
-    width: 205px;
-    padding: 5px;
-    font-size: 16px;
-    background-color: transparent;
+    flex: 1;
+    min-width: 0;
+    padding: 6px 4px;
+    font-size: clamp(14px, 1vw, 18px);
+    background: transparent;
     border: 0;
     outline: 0;
-    color: white;
-    flex-grow: 1;
+    color: #fff;
 }
 
-.matkhau {
-    border-bottom: 2px solid white;
-    width: 255px;
-    margin-left: 85px;
-}
 
-.nhap i {
-    font-size: 18px;
-    color: white;
-}
+/* Links + button */
 
-.matkhau i {
-    font-size: 18px;
-    color: white;
-}
-
-#dnp {
-    width: 135px;
-    height: 40px;
-    font-size: 16px;
-    font-weight: 550;
-    cursor: pointer;
-    border-radius: 5px;
-    border: none;
-    background-color: rgba(129, 23, 4, 0.897);
-    color: white;
-    margin-top: 30px;
-}
-
-#dnp:hover {
-    background-color: rgba(129, 23, 4, 1);
+.tkmk {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 6px 0 14px;
+    font-size: clamp(12.5px, .9vw, 15px);
 }
 
 .quenmk {
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+    color: #e6e6e6;
     text-decoration: none;
 }
 
@@ -140,56 +124,18 @@ body {
     text-decoration: underline;
 }
 
-.dangnhap h1 {
-    margin: 0;
-    /* margin-bottom: 20px; */
-    color: white;
+#dnp {
+    width: 100%;
+    height: clamp(44px, 3.2vw, 56px);
+    font-size: clamp(15px, 1vw, 18px);
+    font-weight: 600;
+    border: 0;
+    border-radius: 12px;
+    cursor: pointer;
+    background: rgba(129, 23, 4, .95);
+    color: #fff;
 }
 
-.dangnhap {
-    margin-bottom: 20px;
-}
-
-.dangnhap {
-    width: 480px;
-    background-color: rgba(0, 0, 0, 0.8);
-    text-align: center;
-    padding: 20px;
-    margin: auto;
-    border-radius: 10px;
-    position: relative;
-}
-
-#wrapper {
-    background-image: url("../assets/635a940a-7ae7-435d-b088-43c2aadc902b.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100vh;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.daukh a i {
-    font-size: 20px;
-    color: white;
-}
-
-.daukh {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 30px;
-    left: 60px;
-}
-
-.tkmk {
-    display: flex;
-    gap: 45px;
-    align-items: center;
-    justify-content: center;
+#dnp:hover {
+    background: rgba(129, 23, 4, 1);
 }
