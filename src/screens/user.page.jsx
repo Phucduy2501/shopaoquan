@@ -115,6 +115,19 @@ useEffect(() => {
       <div className="thoitranghot">
         <Section title="THỜI TRANG HOT NHẤT" products={filter(hot)} onOpen={setModalProduct} />
       </div>
+      <section id="cate">
+        <div class="cate__bg">
+          <div class="cate__img1">
+            <img src="/img/cate/slide-1-trang-chu-slide-1.png" alt="polo" />
+          </div>
+          <div class="cate__img2">
+            <img src="/img/cate/slide-2-trang-chu-slide-2.jpg" alt="polo" />
+          </div>
+          <div class="cate__img3">
+            <img src="/img/cate/slide-4-trang-chu-slide-3.png" alt="polo" />
+          </div>
+        </div>
+      </section>
       <div className="thoitrangmoi">
         <Section title="THỜI TRANG MỚI NHẤT" products={filter(news)} onOpen={setModalProduct} />
       </div>

@@ -15,7 +15,7 @@
 }
 
 .shop .thoitranghot {
-    padding-top: 1380px;
+    padding-top: 450px;
 }
 
 
@@ -150,7 +150,7 @@
 .shop #carousel h2 {
     font-size: 22px;
     font-weight: 700;
-    color: white;
+    color: black;
     margin-bottom: 16px;
 }
 
@@ -552,12 +552,14 @@
     justify-content: space-between;
     padding: 40px 20px;
     gap: 30px;
+    background: #0000000d;
 }
 
 .policy__item {
     flex: 1;
     min-width: 220px;
 }
+
 
 .policy__icon {
     display: flex;
@@ -575,13 +577,26 @@
     font-weight: 700;
 }
 
+.policy__item:hover .policy__icon i{
+    color: #2c89b7;
+}
+
+
 #policy p {
+    font-weight: bold;
     margin-top: 10px;
+    text-align: left;
+}
+
+#policy p:hover{
+    font-weight: bold;
+    color: #5110cb
 }
 
 #policy ul {
     margin-top: 10px;
     padding-left: 20px;
+    text-align: left;
 }
 
 
@@ -600,3 +615,70 @@
     object-fit: cover;
     display: block;
 }
+
+
+/* cate */
+.cate__bg {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cate__img1,
+.cate__img2,
+.cate__img3 {
+  height: 350px;
+  overflow: hidden;       
+}
+
+.cate__img1,
+.cate__img3 {
+  flex: 0 0 25%;
+}
+
+.cate__img2 {
+  flex: 0 0 50%;
+}
+
+.cate__img1 img,
+.cate__img2 img,
+.cate__img3 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+  transition: transform 0.3s ease; 
+}
+
+.cate__img1 img:hover,
+.cate__img2 img:hover,
+.cate__img3 img:hover {
+  transform: scale(1.1);
+}
+
+#cate {
+  background-color: #fafafa;
+  padding: 50px 0;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .cate__bg {
+    flex-direction: column;
+  }
+
+  .cate__img1,
+  .cate__img2,
+  .cate__img3 {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 260px;
+  }
+}
+
+
