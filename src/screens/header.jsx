@@ -8,12 +8,12 @@ const Header = ({ query, setQuery }) => {
       </a>
       <nav id="header">
         <ul>
-          <li><a href="/">HÀNG MỚI VỀ</a></li>
+          <li><a href="/users">HÀNG MỚI VỀ</a></li>
           <li>
             <a href="/ao-so-mi">ÁO NAM</a>
             <ul className="dropdown">
               <li><a href="/ao-so-mi">Áo sơ mi</a></li>
-              <li><a href="#">Áo thun</a></li>
+              <li><a href="/ao-thun">Áo thun</a></li>
               <li><a href="#">Áo polo</a></li>
             </ul>
           </li>

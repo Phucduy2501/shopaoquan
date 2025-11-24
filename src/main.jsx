@@ -8,6 +8,7 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import UserPage from './screens/user.page.jsx'
 import AoSoMiPage from "./screens/AoSoMiPage.jsx"
+import AoThunPage from "./screens/AoThunPage.jsx"
 import Login from './component/login.jsx'
 import Register from "./component/register.jsx";
 import ForgotPassword from "./component/forgot.jsx";
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
   { path: "/register", element: <Register /> },
   { path: "/forgot", element: <ForgotPassword /> },
   { path: '/ao-so-mi', element: <AoSoMiPage /> },
+  { path: '/ao-Thun', element: <AoThunPage /> },
 ])
 
 createRoot(document.getElementById('root')).render(
