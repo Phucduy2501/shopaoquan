@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Carousel } from "antd";
 import "../styles/giaodien.css";
+import Header from "./header";
+import Policy from "./policy";
+import Footer from "./footer";
 
 
 
@@ -50,50 +53,7 @@ useEffect(() => {
   return (
     <>
     <div className="shop">
-      <header className="site-header">
-        <a href="/">
-          <img src="/img/logo.png" alt="Logo" />
-        </a>
-        <nav id="header">
-          <ul>
-            <li><a href="#">HÀNG MỚI VỀ</a></li>
-            <li>
-              <a href="#">ÁO NAM</a>
-              <ul className="dropdown">
-                <li><a href="#">Áo sơ mi</a></li>
-                <li><a href="#">Áo thun</a></li>
-                <li><a href="#">Áo polo</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">QUẦN NAM</a>
-              <ul className="dropdown">
-                <li><a href="#">Quần jeans</a></li>
-                <li><a href="#">Quần tây</a></li>
-                <li><a href="#">Quần kaki</a></li>
-              </ul>
-            </li>
-            <li><a href="#">PHỤ KIỆN</a></li>
-            <li><a href="#">GIÀY DÉP</a></li>
-            <li><a href="#">OUTLET SAFE</a></li>
-          </ul>
-        </nav>
-
-        <div className="header__lf">
-          <div className="header__lf-icon">
-            <input
-              type="text"
-              placeholder="Tìm sản phẩm..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            <i className="fa-solid fa-magnifying-glass"></i>
-          </div>
-          <div className="header__lf-icon">
-            <i className="fa-solid fa-cart-shopping"></i>
-          </div>
-        </div>
-      </header>
+      <Header query={query} setQuery={setQuery} />
 
       <div className="home-banner">
       <Carousel autoplay>
@@ -136,91 +96,9 @@ useEffect(() => {
         <Section title="THỜI TRANG BÁN CHẠY" products={filter(best)} onOpen={setModalProduct} />
       </div>
       <hr />
-    <section id="policy">
-      <div className="policy__item">
-        <div className="policy__icon">
-          <i className="fa-solid fa-plane"></i>
-          <h3>THANH TOÁN & GIAO HÀNG</h3>
-        </div>
-        <p>Miễn phí vận chuyển cho đơn hàng trên 399.000 VNĐ</p>
-        <ul>
-          <li>Giao hàng và thu tiền tận nơi</li>
-          <li>Chuyển khoản và giao hàng</li>
-          <li>Mua hàng tại shop</li>
-        </ul>
-      </div>
+      <Policy />
+      <Footer />
 
-      <div className="policy__item">
-        <div className="policy__icon">
-          <i className="fa-regular fa-credit-card"></i>
-          <h3>THẺ THÀNH VIÊN</h3>
-        </div>
-        <p>Chế độ ưu đãi thành viên VIP:</p>
-        <ul>
-          <li>5% cho thành viên Bạc</li>
-          <li>10% cho thành viên Vàng</li>
-          <li>15% cho thành viên Kim cương</li>
-        </ul>
-      </div>
-
-      <div className="policy__item">
-        <div className="policy__icon">
-          <i className="fa-solid fa-clock"></i>
-          <h3>GIỜ MỞ CỬA</h3>
-        </div>
-        <p>8h30 đến 22:00</p>
-        <ul>
-          <li>Tất cả các ngày trong tuần</li>
-          <li>Áp dụng cho tất cả chi nhánh</li>
-        </ul>
-      </div>
-
-      <div className="policy__item">
-        <div className="policy__icon">
-          <i className="fa-solid fa-phone"></i>
-          <h3>HỖ TRỢ 24/7</h3>
-        </div>
-        <p>Gọi ngay khi bạn cần hỗ trợ</p>
-        <ul>
-          <li>0868.444.644</li>
-        </ul>
-      </div>
-    </section>
-
-      <footer>  
-        <div className="footer__lf">
-          <img src="/img/logo-footer.png" alt="Logo" />
-          <ul>
-            <li><a href="#">Giới Thiệu</a></li>
-            <li><a href="#">Liên hệ</a></li>
-            <li><a href="#">Tuyển dụng</a></li>
-            <li><a href="#">Tin tức</a></li>
-          </ul>
-          <div className="footer__em">
-            <i className="fa-solid fa-envelope"></i> info@4menshop.com
-          </div>
-          <div className="footer__em">
-            <i className="fa-solid fa-phone"></i> 0868.444.644
-          </div>
-        </div>
-
-        <div className="footer__bt">
-          <h5>HỖ TRỢ KHÁCH HÀNG</h5>
-          <ul>
-            <li><a href="#">Hướng dẫn đặt hàng</a></li>
-            <li><a href="#">Hướng dẫn chọn size</a></li>
-            <li><a href="#">Chính sách bảo mật</a></li>
-          </ul>
-        </div>
-
-        <div className="footer__ht">
-          <h5>HỆ THỐNG CỬA HÀNG</h5>
-          <img
-            src="https://4menshop.com/images/footer-map.jpg"
-            alt="map"
-          />
-        </div>
-      </footer>
       {modalProduct && (
         <Modal product={modalProduct} onClose={() => setModalProduct(null)} />
       )}
