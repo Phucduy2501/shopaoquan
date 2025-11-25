@@ -14,15 +14,15 @@ const Header = ({ query, setQuery }) => {
             <ul className="dropdown">
               <li><a href="/ao-so-mi">Áo sơ mi</a></li>
               <li><a href="/ao-thun">Áo thun</a></li>
-              <li><a href="#">Áo polo</a></li>
+              <li><a href="/ao-Polo">Áo polo</a></li>
             </ul>
           </li>
           <li>
             <a href="#">QUẦN NAM</a>
             <ul className="dropdown">
-              <li><a href="#">Quần jeans</a></li>
-              <li><a href="#">Quần tây</a></li>
-              <li><a href="#">Quần kaki</a></li>
+              <li><a href="/quan-jeans">Quần jeans</a></li>
+              <li><a href="/quan-tay">Quần tây</a></li>
+              <li><a href="/quan-kaki">Quần kaki</a></li>
             </ul>
           </li>
           <li><a href="#">PHỤ KIỆN</a></li>
