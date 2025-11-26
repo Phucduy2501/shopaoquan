@@ -197,9 +197,9 @@ const AoThunPage = () => {
             </select>
 
             <select value={sleeve} onChange={(e) => setSleeve(e.target.value)}>
-              <option value="">Kiểu tay</option>
-              <option value="Tay ngắn">Tay ngắn</option>
-              <option value="Tay dài">Tay dài</option>
+              <option value="">Kiểu quần</option>
+              <option value="Tay ngắn">quần ngắn</option>
+              <option value="Tay dài">quần dài</option>
             </select>
 
             <select value={price} onChange={(e) => setPrice(e.target.value)}>
