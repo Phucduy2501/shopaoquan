@@ -13,6 +13,9 @@ import AoPoloPage from "./screens/AoPoloPage.jsx"
 import QuanJeansPage from "./screens/QuanJeansPage.jsx"
 import QuanTayPage from "./screens/QuanTayPage.jsx"
 import QuanKakiPage from "./screens/QuanKakiPage.jsx"
+import GiayDepPage from "./screens/GiayDepPage.jsx"
+import PhuKienPage from "./screens/PhuKienPage.jsx"
+import OutletSafePage from "./screens/OutletSafePage.jsx"
 import Login from './component/login.jsx'
 import Register from "./component/register.jsx";
 import ForgotPassword from "./component/forgot.jsx";
@@ -29,6 +32,9 @@ const router = createBrowserRouter([
   { path: '/quan-jeans', element: <QuanJeansPage /> },
   { path: '/quan-tay', element: <QuanTayPage /> },
   { path: '/quan-kaki', element: <QuanKakiPage /> },
+  { path: '/giay-dep', element: <GiayDepPage /> },
+  { path: '/phu-kien', element: <PhuKienPage /> },
+  { path: '/outlet-safe', element: <OutletSafePage /> },
 ])
 
 createRoot(document.getElementById('root')).render(

@@ -123,7 +123,10 @@ const AoThunPage = () => {
       <Header />
       <main className="shop-main" id="shop-main">
         <section id="carousel1" className="aosomi-section">
-          <h2 className="title">QUẦN TÂY NAM</h2>
+          <h2 className="title">PHỤ KIỆN NAM</h2>
+          <div className="description">
+            <strong>Thắt lưng nam</strong> đẹp, kiểu dây lưng Hàn Quốc 2025, được 4MEN(R) thiết kế chuyên biệt theo style Hàn Quốc.&nbsp;<strong>Thắt lưng nam</strong>&nbsp;tại 4MEN luôn được may với chất liệu da bò thật 100%, đa dạng kiểu dáng từ lịch lãm, cổ điển đến thời trang, sang trọ.Thắt lưng là phụ kiện đóng vai trò quan trọng đối với nam giới. Chọn được một chiếc thắt lưng đẹp và phù hợp với trang phục, phong cách bản thân sẽ khiến bạn trông nam tính và lịch lãm hơn rất nhiều. Không những thế thắt lưng còn giúp việc xử lý kiểu dáng, màu sắc và kích cỡ của trang phục.&nbsp;<span class="show-more-2 active">...</span>
+          </div>
           <div className="cat-filter-catalogue">
             <ul>
               <li>
@@ -139,7 +142,7 @@ const AoThunPage = () => {
                   className={category === "hoatiet" ? "active" : ""}
                   onClick={() => setCategory("hoatiet")}
                 >
-                  QUẦN TÂY HỌA TIẾT
+                  PHỤ KIỆN HỌA TIẾT
                 </button>
               </li>
               <li>
@@ -197,9 +200,9 @@ const AoThunPage = () => {
             </select>
 
             <select value={sleeve} onChange={(e) => setSleeve(e.target.value)}>
-              <option value="">Kiểu quần</option>
-              <option value="Tay ngắn">quần ngắn</option>
-              <option value="Tay dài">quần dài</option>
+              <option value="">Kiểu phụ kiện</option>
+              <option value="Tay ngắn">kiểu ngắn</option>
+              <option value="Tay dài">kiểu dài</option>
             </select>
 
             <select value={price} onChange={(e) => setPrice(e.target.value)}>

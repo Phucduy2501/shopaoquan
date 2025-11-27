@@ -123,16 +123,19 @@ const AoThunPage = () => {
       <Header />
       <main className="shop-main" id="shop-main">
         <section id="carousel1" className="aosomi-section">
-          <h2 className="title">QUẦN TÂY NAM</h2>
+          <h2 className="title">KHUYẾN MÃI</h2>
+          <div className="description">
+            Sản phẩm thời trang nam giảm giá, saleoff với giá bán "chạm sàn": các dòng sản phẩm quần jean nam, áo khoác, quần kaki, áo sơ mi nam, quần tây, giày nam cao cấp,... sẽ được cập nhật liên trên danh mục thời trang khuyến mại của website
+          </div>
           <div className="cat-filter-catalogue">
             <ul>
               <li>
-                <button
+                <buttonS
                   className={category === "all" ? "active" : ""}
                   onClick={() => setCategory("all")}
                 >
                   TẤT CẢ
-                </button>
+                </buttonS>
               </li>
               <li>
                 <button
@@ -197,9 +200,9 @@ const AoThunPage = () => {
             </select>
 
             <select value={sleeve} onChange={(e) => setSleeve(e.target.value)}>
-              <option value="">Kiểu quần</option>
-              <option value="Tay ngắn">quần ngắn</option>
-              <option value="Tay dài">quần dài</option>
+              <option value="">Kiểu outlet-safe</option>
+              <option value="Tay ngắn">kiểu ngắn</option>
+              <option value="Tay dài">kiểu dài</option>
             </select>
 
             <select value={price} onChange={(e) => setPrice(e.target.value)}>

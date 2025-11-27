@@ -25,9 +25,9 @@ const Header = ({ query, setQuery }) => {
               <li><a href="/quan-kaki">Quần kaki</a></li>
             </ul>
           </li>
-          <li><a href="#">PHỤ KIỆN</a></li>
-          <li><a href="#">GIÀY DÉP</a></li>
-          <li><a href="#">OUTLET SAFE</a></li>
+          <li><a href="/phu-kien">PHỤ KIỆN</a></li>
+          <li><a href="/giay-dep">GIÀY DÉP</a></li>
+          <li><a href="/outlet-safe">OUTLET SAFE</a></li>
         </ul>
       </nav>
 

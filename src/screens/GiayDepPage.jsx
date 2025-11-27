@@ -123,7 +123,8 @@ const AoThunPage = () => {
       <Header />
       <main className="shop-main" id="shop-main">
         <section id="carousel1" className="aosomi-section">
-          <h2 className="title">QUẦN TÂY NAM</h2>
+          <h2 className="title">GIÀY DÉP NAM</h2>
+          
           <div className="cat-filter-catalogue">
             <ul>
               <li>
@@ -139,7 +140,7 @@ const AoThunPage = () => {
                   className={category === "hoatiet" ? "active" : ""}
                   onClick={() => setCategory("hoatiet")}
                 >
-                  QUẦN TÂY HỌA TIẾT
+                  GIÀY DÉP HỌA TIẾT
                 </button>
               </li>
               <li>
@@ -197,9 +198,9 @@ const AoThunPage = () => {
             </select>
 
             <select value={sleeve} onChange={(e) => setSleeve(e.target.value)}>
-              <option value="">Kiểu quần</option>
-              <option value="Tay ngắn">quần ngắn</option>
-              <option value="Tay dài">quần dài</option>
+              <option value="">Kiểu Giày Dép</option>
+              <option value="Tay ngắn">kiểu Giày</option>
+              <option value="Tay dài">kiểu Dép</option>
             </select>
 
             <select value={price} onChange={(e) => setPrice(e.target.value)}>
@@ -265,7 +266,7 @@ const AoThunPage = () => {
         </section>
 
         <div className="content-box">
-          <h3>ÁO THUN NAM HÀNG HIỆU, ÁO THUN NAM CAO CẤP</h3>
+          <h3>GIÀY DÉP NAM HÀNG HIỆU, GIÀY DÉP NAM CAO CẤP</h3>
           <p>
             Thời trang nam 4MEN(R) là thương hiệu độc quyền <br />
             Sản phẩm chất lượng từ sợi vải đến đường may.
@@ -274,19 +275,19 @@ const AoThunPage = () => {
           <div className={`extra-text ${showMore ? "open" : ""}`}>
             <h3>ÁO THUN NAM GIÁ RẺ</h3>
             <p>
-              Ngoài dòng áo thun cao cấp, 4MEN(R) còn sản xuất các mẫu áo thun
+              Ngoài dòng giày cao cấp, 4MEN(R) còn sản xuất các mẫu giày
               giá rẻ, phù hợp với sinh viên và người đi làm.
             </p>
 
-            <h3>ÁO THUN NAM ĐẸP, KIỂU MỚI 2025</h3>
+            <h3>GIÀY DÉP NAM ĐẸP, KIỂU MỚI 2025</h3>
             <p>
-              Các mẫu áo thun 2025 được 4MEN(R) nghiên cứu theo phong cách Hàn
+              Các mẫu giày 2025 được 4MEN(R) nghiên cứu theo phong cách Hàn
               Quốc, trẻ trung và dễ phối đồ...
             </p>
 
-            <h3>MUA ÁO THUN NAM</h3>
+            <h3>MUA GIÀY DÉP NAM</h3>
             <p>
-              Đến với 4MEN(R) chắc chắn bạn sẽ chọn được mẫu áo thun nam đẹp và
+              Đến với 4MEN(R) chắc chắn bạn sẽ chọn được mẫu giày nam đẹp và
               ưng ý.
             </p>
           </div>

@@ -6,7 +6,7 @@ import "../styles/giaodien.css";
 import "../styles/aosomi.css";
 import "../styles/sualoi.css"
 
-const API_URL = "https://68d813d82144ea3f6da74df2.mockapi.io/aothun";
+const API_URL = "https://68d813d82144ea3f6da74df2.mockapi.io/aoquan";
 
 const formatCurrency = (value) => {
   if (value === undefined || value === null) return "";
