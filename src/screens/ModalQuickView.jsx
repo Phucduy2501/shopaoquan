@@ -3,11 +3,19 @@ import React, { useState } from "react";
 
 const fmt = (n) => Number(n).toLocaleString("vi-VN");
 
-const ModalQuickView = ({ product, onClose }) => {
+const ModalQuickView = ({ product, onClose, onAddToCart }) => {
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState("M");
 
   if (!product) return null; // phòng hờ
+
+  const handleAddToCart = () => {
+    // Gọi sang cha
+    if (onAddToCart) {
+      onAddToCart(product, qty, size);
+    }
+    onClose(); // đóng popup
+  };
 
   return (
     <div className="modal" onClick={onClose}>
@@ -70,13 +78,7 @@ const ModalQuickView = ({ product, onClose }) => {
             <div className="modal-actions">
               <button className="buy-btn">🛒 Đăng ký mua</button>
 
-              <button
-                className="cart-btn"
-                onClick={() => {
-                  alert(`+${qty} ${product.name} (size ${size})`);
-                  onClose();
-                }}
-              >
+              <button className="cart-btn" onClick={handleAddToCart}>
                 + Thêm vào giỏ hàng
               </button>
             </div>

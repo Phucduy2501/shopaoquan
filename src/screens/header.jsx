@@ -1,11 +1,16 @@
 import React from "react";
 
-const Header = ({ query, setQuery }) => {
+const Header = ({
+  query = "",
+  setQuery = () => {},
+  onCartClick = () => {},
+}) => {
   return (
     <header className="site-header">
       <a href="/">
         <img src="/img/logo.png" alt="Logo" />
       </a>
+
       <nav id="header">
         <ul>
           <li><a href="/users">HÀNG MỚI VỀ</a></li>
@@ -41,7 +46,9 @@ const Header = ({ query, setQuery }) => {
           />
           <i className="fa-solid fa-magnifying-glass"></i>
         </div>
-        <div className="header__lf-icon">
+
+        {/* 👇 GIỎ HÀNG – GẮN onClick VÀO ĐÂY */}
+        <div className="header__lf-icon" onClick={onCartClick}>
           <i className="fa-solid fa-cart-shopping"></i>
         </div>
       </div>

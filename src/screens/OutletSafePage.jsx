@@ -34,6 +34,136 @@ const AoThunPage = () => {
   const [showMore, setShowMore] = useState(false);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
+  
+ // GIỎ HÀNG
+const [cart, setCart] = useState(() => {
+  if (typeof window === "undefined") return [];
+  try {
+    const stored = localStorage.getItem("cart");
+    return stored ? JSON.parse(stored) : [];
+  } catch (e) {
+    console.error("Lỗi parse cart từ localStorage", e);
+    return [];
+  }
+});
+const [isCartOpen, setIsCartOpen] = useState(false);
+const [isPaymentOpen, setIsPaymentOpen] = useState(false); 
+
+const handleCartIconClick = () => {
+  setIsCartOpen((prev) => !prev);
+};
+
+const handleAddToCart = (product, qty, size) => {
+  setCart((prev) => {
+    const idx = prev.findIndex(
+      (item) => item.id === product.id && item.size === size
+    );
+    if (idx !== -1) {
+      const newCart = [...prev];
+      newCart[idx] = { ...newCart[idx], qty: newCart[idx].qty + qty };
+      return newCart;
+    }
+    return [
+      ...prev,
+      {
+        id: product.id,
+        name: product.name,
+        img: product.img,          // chú ý: dùng field img đã map ở openModal
+        price: Number(product.price),
+        qty,
+        size,
+      },
+    ];
+  });
+
+  setIsCartOpen(true); // thêm xong tự mở giỏ
+};
+
+const cartTotal = cart.reduce(
+  (sum, item) => sum + item.price * item.qty,
+  0
+);
+  /*******************************************/ 
+
+  const PaymentModal = ({ amount, onClose }) => {
+  const [method, setMethod] = useState("bank"); // bank | cash
+
+  return (
+    <div className="payment-overlay" onClick={onClose}>
+      <div className="payment-modal" onClick={(e) => e.stopPropagation()}>
+        <button className="payment-close" onClick={onClose}>
+          ✕
+        </button>
+
+        <h2>Thanh toán</h2>
+        <p>
+          Tổng tiền:&nbsp;
+          <b style={{ color: "#b7312c" }}>
+            {amount.toLocaleString("vi-VN")}đ
+          </b>
+        </p>
+
+        <div className="payment-methods">
+          <label>
+            <input
+              type="radio"
+              value="bank"
+              checked={method === "bank"}
+              onChange={(e) => setMethod(e.target.value)}
+            />
+            Chuyển khoản (QR)
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="cash"
+              checked={method === "cash"}
+              onChange={(e) => setMethod(e.target.value)}
+            />
+            Thanh toán tiền mặt
+          </label>
+        </div>
+
+        {method === "bank" ? (
+          <div className="payment-content">
+            <p>Quét mã QR để chuyển khoản đúng số tiền:</p>
+
+            {/* TODO: thay link này bằng QR thật của bạn */}
+            <img
+              src={`https://img.vietqr.io/image/VCB-0123456789-compact.png?amount=${amount}&addInfo=Thanh%20toan%20don%20hang`}
+              alt="QR chuyển khoản"
+              className="payment-qr"
+            />
+
+            <ul className="payment-info">
+              <li>Ngân hàng: mb bank</li>
+              <li>Số TK: 012387</li>
+              <li>Chủ TK: TRAN VAN PHUC DUY</li>
+              <li>Nội dung: Thanh toán đơn hàng 4MEN</li>
+            </ul>
+          </div>
+        ) : (
+          <div className="payment-content">
+            <p>
+              Khách thanh toán <b>{amount.toLocaleString("vi-VN")}đ</b> tiền mặt.
+            </p>
+            <p>Vui lòng thu đúng số tiền và xác nhận đơn hàng trong hệ thống.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+  /***************************************/ 
+  // LƯU GIỎ HÀNG VÀO LOCALSTORAGE MỖI KHI THAY ĐỔI
+  useEffect(() => {
+    try {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } catch (e) {
+      console.error("Lỗi lưu cart vào localStorage", e);
+    }
+  }, [cart]);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -64,16 +194,15 @@ const AoThunPage = () => {
     setSort("Mặc định");
   };
 
- const openModal = (p) => {
-    setSelectedProduct({
-      img: p.image,
-      name: p.name,
-      price: p.price,
-      original: p.oldPrice,
-      status: p.status,
-    });
-  };
-
+const openModal = (p) => {
+  setSelectedProduct({
+    ...p,
+    img: p.image,       
+    price: p.price,
+    original: p.oldPrice,
+    status: p.status,
+  });
+};
   const filteredProducts = useMemo(() => {
     let filtered = [...products];
 
@@ -133,7 +262,7 @@ const AoThunPage = () => {
 
   return (
     <div className="shop">
-      <Header />
+      <Header onCartClick={handleCartIconClick} />
       <main className="shop-main" id="shop-main">
         <section id="carousel1" className="aosomi-section">
           <h2 className="title">KHUYẾN MÃI</h2>
@@ -307,11 +436,56 @@ const AoThunPage = () => {
             {showMore ? "THU GỌN -" : "XEM THÊM +"}
           </button>
         </div>
-        {/* MODAL QUICK VIEW */}
-        {selectedProduct && (
+                {selectedProduct && (
           <ModalQuickView
             product={selectedProduct}
             onClose={() => setSelectedProduct(null)}
+            onAddToCart={handleAddToCart}   // 👈 quan trọng
+          />
+        )}
+
+        {isCartOpen && (
+          <div className="cart-panel">
+            <h3>🛒 Giỏ Hàng</h3>
+
+            <div className="cart-items">
+              {cart.length === 0 ? (
+                <p>Giỏ hàng trống</p>
+              ) : (
+                cart.map((item, index) => (
+                  <div className="cart-item" key={index}>
+                    <img src={item.img} alt={item.name} />
+                    <div className="cart-item-info">
+                      <p>
+                        <b>{item.name}</b> ({item.size})
+                      </p>
+                      <p>
+                        {item.qty} x {formatCurrency(item.price)}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+
+            <p>
+              <b>Tổng:</b> {formatCurrency(cartTotal)}
+            </p>
+
+            <button
+              className="checkout-btn"
+              disabled={cart.length === 0}
+              onClick={() => setIsPaymentOpen(true)}
+            >
+              Thanh toán
+            </button>
+          </div>
+        )}
+
+        {isPaymentOpen && cartTotal > 0 && (
+          <PaymentModal
+            amount={cartTotal}
+            onClose={() => setIsPaymentOpen(false)}
           />
         )}
 

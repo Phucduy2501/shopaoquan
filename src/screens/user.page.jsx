@@ -14,7 +14,6 @@ const fmt = (n) => {
   return Number.isNaN(num) ? "" : num.toLocaleString("vi-VN");
 };
 
-
 const UserPage = () => {
   const [query, setQuery] = useState("");
   const [modalProduct, setModalProduct] = useState(null);
