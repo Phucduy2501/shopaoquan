@@ -15,7 +15,7 @@
 }
 
 .shop .thoitranghot {
-    padding-top: 450px;
+    padding-top: 1802px;
 }
 
 
@@ -357,11 +357,17 @@
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 10px;
+    color: white;
 }
 
 .shop .modal-info p {
     margin: 4px 0;
     font-size: 14px;
+    color: white;
+}
+
+.shop .modal-info label{
+    color: white;
 }
 
 

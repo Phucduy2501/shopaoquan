@@ -6,7 +6,7 @@ import "../styles/giaodien.css";
 import "../styles/aosomi.css";
 import "../styles/sualoi.css"
 
-const API_URL = "https://6927415326e7e41498fda1a6.mockapi.io/quantay";
+const API_URL = "https://68dd4ec87cd1948060ad2d97.mockapi.io/outletSafe";
 
 const formatCurrency = (value) => {
   if (value === undefined || value === null) return "";
@@ -130,12 +130,12 @@ const AoThunPage = () => {
           <div className="cat-filter-catalogue">
             <ul>
               <li>
-                <buttonS
+                <button
                   className={category === "all" ? "active" : ""}
                   onClick={() => setCategory("all")}
                 >
                   TẤT CẢ
-                </buttonS>
+                </button>
               </li>
               <li>
                 <button
