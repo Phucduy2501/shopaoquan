@@ -5,6 +5,7 @@ import Footer from "./footer";
 import "../styles/giaodien.css";
 import "../styles/aosomi.css";
 import "../styles/sualoi.css"
+import ModalQuickView from "./ModalQuickView";
 
 const API_URL = "https://6927415326e7e41498fda1a6.mockapi.io/quantay";
 
@@ -31,6 +32,7 @@ const AoThunPage = () => {
   const [sort, setSort] = useState("Mặc định");
 
   const [showMore, setShowMore] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -60,6 +62,17 @@ const AoThunPage = () => {
     setCategory("all");
     setSort("Mặc định");
   };
+
+   const openModal = (p) => {
+    setSelectedProduct({
+      img: p.image,
+      name: p.name,
+      price: p.price,
+      original: p.oldPrice,
+      status: p.status,
+    });
+  };
+
 
   const filteredProducts = useMemo(() => {
     let filtered = [...products];
@@ -225,40 +238,36 @@ const AoThunPage = () => {
             {!loading &&
               !error &&
               filteredProducts.map((p) => (
-                <div className="pro" key={p.id}>
-                  <div className="item-thumbs">
-                    {p.tag && (
-                      <span className="badge">
-                        <span className="offer">
-                          {p.tag === "khuyenmai"
-                            ? `SALE ${p.sale || ""}`
-                            : String(p.tag).toUpperCase()}
+                 <div className="pro" key={p.id}>
+                    <div className="item-thumbs">
+                        {p.tag && (
+                        <span className="badge">
+                            <span className="offer">
+                            {p.tag === "khuyenmai"
+                                ? `SALE ${p.sale || ""}`
+                                : String(p.tag).toUpperCase()}
+                            </span>
                         </span>
-                      </span>
-                    )}
+                        )}
 
-                    <a href={p.image} target="_blank" rel="noreferrer">
-                      <img src={p.image} alt={p.name} />
-                    </a>
+                        <img src={p.image} alt={p.name} />
 
-                    <div className="ovrs">
-                      MUA NHANH
-                      <br />
-                      <span>S</span>
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>XXL</span>
+                        <button
+                        type="button"
+                        className="quick-cart-btn"
+                        onClick={() => openModal(p)}
+                        >
+                        <i className="fa-solid fa-cart-shopping" />
+                        </button>
                     </div>
-                  </div>
 
-                  <div className="proi">
-                    <h4>{p.name}</h4>
-                    <div className="sale">
-                      {formatCurrency(p.price)}
-                      {p.oldPrice && <em>{formatCurrency(p.oldPrice)}</em>}
+                    <div className="proi">
+                        <h4>{p.name}</h4>
+                        <div className="sale">
+                        {formatCurrency(p.price)}
+                        {p.oldPrice && <em>{formatCurrency(p.oldPrice)}</em>}
+                        </div>
                     </div>
-                  </div>
                 </div>
               ))}
           </div>
@@ -295,6 +304,13 @@ const AoThunPage = () => {
             {showMore ? "THU GỌN -" : "XEM THÊM +"}
           </button>
         </div>
+        {/* MODAL QUICK VIEW */}
+        {selectedProduct && (
+          <ModalQuickView
+            product={selectedProduct}
+            onClose={() => setSelectedProduct(null)}
+          />
+        )}
 
         <Policy />
         <Footer />
