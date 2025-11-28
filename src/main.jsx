@@ -16,6 +16,7 @@ import QuanKakiPage from "./screens/QuanKakiPage.jsx"
 import GiayDepPage from "./screens/GiayDepPage.jsx"
 import PhuKienPage from "./screens/PhuKienPage.jsx"
 import OutletSafePage from "./screens/OutletSafePage.jsx"
+import TawkChat from "./screens/TawkChat.jsx";
 import Login from './component/login.jsx'
 import Register from "./component/register.jsx";
 import ForgotPassword from "./component/forgot.jsx";
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <TawkChat />      
     <RouterProvider router={router} />
   </StrictMode>
 )

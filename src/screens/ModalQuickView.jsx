@@ -1,4 +1,3 @@
-// src/components/ModalQuickView.jsx
 import React, { useState } from "react";
 
 const fmt = (n) => Number(n).toLocaleString("vi-VN");
@@ -7,14 +6,13 @@ const ModalQuickView = ({ product, onClose, onAddToCart }) => {
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState("M");
 
-  if (!product) return null; // phòng hờ
+  if (!product) return null; 
 
   const handleAddToCart = () => {
-    // Gọi sang cha
     if (onAddToCart) {
       onAddToCart(product, qty, size);
     }
-    onClose(); // đóng popup
+    onClose(); 
   };
 
   return (

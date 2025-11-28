@@ -4,8 +4,10 @@ import Policy from "./policy";
 import Footer from "./footer";
 import "../styles/giaodien.css";
 import "../styles/aosomi.css";
-import "../styles/sualoi.css"
 import ModalQuickView from "./ModalQuickView";
+import CartPanel, { PaymentModal } from "./giohang";
+import TawkChat from "./TawkChat";
+
 
 const API_URL = "https://6919f5489ccba073ee9473d3.mockapi.io/AoPoLo";
 
@@ -34,7 +36,8 @@ const AoThunPage = () => {
   const [showMore, setShowMore] = useState(false);
 
 const [selectedProduct, setSelectedProduct] = useState(null);
- // GIỎ HÀNG
+
+// GIỎ HÀNG
 const [cart, setCart] = useState(() => {
   if (typeof window === "undefined") return [];
   try {
@@ -47,6 +50,7 @@ const [cart, setCart] = useState(() => {
 });
 const [isCartOpen, setIsCartOpen] = useState(false);
 const [isPaymentOpen, setIsPaymentOpen] = useState(false); 
+const cartTotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
 const handleCartIconClick = () => {
   setIsCartOpen((prev) => !prev);
@@ -67,7 +71,7 @@ const handleAddToCart = (product, qty, size) => {
       {
         id: product.id,
         name: product.name,
-        img: product.img,          // chú ý: dùng field img đã map ở openModal
+        img: product.img,
         price: Number(product.price),
         qty,
         size,
@@ -75,87 +79,39 @@ const handleAddToCart = (product, qty, size) => {
     ];
   });
 
-  setIsCartOpen(true); // thêm xong tự mở giỏ
+  setIsCartOpen(true);
 };
 
-const cartTotal = cart.reduce(
-  (sum, item) => sum + item.price * item.qty,
-  0
-);
-  /*******************************************/ 
 
-  const PaymentModal = ({ amount, onClose }) => {
-  const [method, setMethod] = useState("bank"); // bank | cash
+const handleIncreaseQty = (id, size) => {
+  setCart((prev) =>
+    prev.map((item) =>
+      item.id === id && item.size === size
+        ? { ...item, qty: item.qty + 1 }
+        : item
+    )
+  );
+};
 
-  return (
-    <div className="payment-overlay" onClick={onClose}>
-      <div className="payment-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="payment-close" onClick={onClose}>
-          ✕
-        </button>
+const handleDecreaseQty = (id, size) => {
+  setCart((prev) =>
+    prev
+      .map((item) =>
+        item.id === id && item.size === size
+          ? { ...item, qty: item.qty - 1 }
+          : item
+      )
+      .filter((item) => item.qty > 0) 
+  );
+};
 
-        <h2>Thanh toán</h2>
-        <p>
-          Tổng tiền:&nbsp;
-          <b style={{ color: "#b7312c" }}>
-            {amount.toLocaleString("vi-VN")}đ
-          </b>
-        </p>
-
-        <div className="payment-methods">
-          <label>
-            <input
-              type="radio"
-              value="bank"
-              checked={method === "bank"}
-              onChange={(e) => setMethod(e.target.value)}
-            />
-            Chuyển khoản (QR)
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="cash"
-              checked={method === "cash"}
-              onChange={(e) => setMethod(e.target.value)}
-            />
-            Thanh toán tiền mặt
-          </label>
-        </div>
-
-        {method === "bank" ? (
-          <div className="payment-content">
-            <p>Quét mã QR để chuyển khoản đúng số tiền:</p>
-
-            {/* TODO: thay link này bằng QR thật của bạn */}
-            <img
-              src={`https://img.vietqr.io/image/VCB-0123456789-compact.png?amount=${amount}&addInfo=Thanh%20toan%20don%20hang`}
-              alt="QR chuyển khoản"
-              className="payment-qr"
-            />
-
-            <ul className="payment-info">
-              <li>Ngân hàng: mb bank</li>
-              <li>Số TK: 012387</li>
-              <li>Chủ TK: TRAN VAN PHUC DUY</li>
-              <li>Nội dung: Thanh toán đơn hàng 4MEN</li>
-            </ul>
-          </div>
-        ) : (
-          <div className="payment-content">
-            <p>
-              Khách thanh toán <b>{amount.toLocaleString("vi-VN")}đ</b> tiền mặt.
-            </p>
-            <p>Vui lòng thu đúng số tiền và xác nhận đơn hàng trong hệ thống.</p>
-          </div>
-        )}
-      </div>
-    </div>
+const handleRemoveItem = (id, size) => {
+  setCart((prev) =>
+    prev.filter((item) => !(item.id === id && item.size === size))
   );
 };
 
   /***************************************/ 
-  // LƯU GIỎ HÀNG VÀO LOCALSTORAGE MỖI KHI THAY ĐỔI
   useEffect(() => {
     try {
       localStorage.setItem("cart", JSON.stringify(cart));
@@ -439,47 +395,20 @@ const cartTotal = cart.reduce(
           <ModalQuickView
             product={selectedProduct}
             onClose={() => setSelectedProduct(null)}
-            onAddToCart={handleAddToCart}   // 👈 quan trọng
+            onAddToCart={handleAddToCart}   
           />
         )}
 
-        {isCartOpen && (
-          <div className="cart-panel">
-            <h3>🛒 Giỏ Hàng</h3>
-
-            <div className="cart-items">
-              {cart.length === 0 ? (
-                <p>Giỏ hàng trống</p>
-              ) : (
-                cart.map((item, index) => (
-                  <div className="cart-item" key={index}>
-                    <img src={item.img} alt={item.name} />
-                    <div className="cart-item-info">
-                      <p>
-                        <b>{item.name}</b> ({item.size})
-                      </p>
-                      <p>
-                        {item.qty} x {formatCurrency(item.price)}
-                      </p>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-
-            <p>
-              <b>Tổng:</b> {formatCurrency(cartTotal)}
-            </p>
-
-            <button
-              className="checkout-btn"
-              disabled={cart.length === 0}
-              onClick={() => setIsPaymentOpen(true)}
-            >
-              Thanh toán
-            </button>
-          </div>
-        )}
+         <CartPanel
+          isOpen={isCartOpen}
+          cart={cart}
+          cartTotal={cartTotal}
+          onClose={() => setIsCartOpen(false)}
+          onIncreaseQty={handleIncreaseQty}
+          onDecreaseQty={handleDecreaseQty}
+          onRemoveItem={handleRemoveItem}
+          onCheckout={() => setIsPaymentOpen(true)}
+        />
 
         {isPaymentOpen && cartTotal > 0 && (
           <PaymentModal
@@ -490,6 +419,7 @@ const cartTotal = cart.reduce(
         <Policy />
         <Footer />
       </main>
+      <TawkChat />
     </div>
   );
 };
