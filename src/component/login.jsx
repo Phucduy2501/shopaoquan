@@ -8,27 +8,51 @@ export default function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
+  // const onFinish = async ({ username, password }) => {
+  //   setLoading(true);
+  //   try {
+  //     const res = await fetch("http://localhost:3000/dangnhap", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ username, password }),
+  //     });
+
+  //     const data = await res.json();
+  //     if (!res.ok) throw new Error(data.message || "Đăng nhập thất bại!");
+
+  //     localStorage.setItem("user", JSON.stringify(data.data || { username }));
+  //     alert(data.message || "✅ Đăng nhập thành công!");
+  //     navigate("/users");
+  //   } catch (err) {
+  //     alert(`⚠️ ${err.message || "Lỗi kết nối tới server!"}`);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   const onFinish = async ({ username, password }) => {
-    setLoading(true);
-    try {
-      const res = await fetch("http://localhost:3000/dangnhap", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
+  setLoading(true);
+  try {
+    const res = await fetch("http://localhost:3000/dangnhap", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Đăng nhập thất bại!");
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Đăng nhập thất bại!");
 
-      localStorage.setItem("user", JSON.stringify(data.data || { username }));
-      alert(data.message || "✅ Đăng nhập thành công!");
-      navigate("/users");
-    } catch (err) {
-      alert(`⚠️ ${err.message || "Lỗi kết nối tới server!"}`);
-    } finally {
-      setLoading(false);
-    }
-  };
+    localStorage.setItem("isLoggedIn", "true");
+
+    localStorage.setItem("user", JSON.stringify(data.data || { username }));
+
+    alert(data.message || "✅ Đăng nhập thành công!");
+    navigate("/users"); 
+  } catch (err) {
+    alert(`⚠️ ${err.message || "Lỗi kết nối tới server!"}`);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div id="wrapper">

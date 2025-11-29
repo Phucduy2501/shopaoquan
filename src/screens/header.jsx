@@ -1,50 +1,110 @@
 import React from "react";
-import HeaderSearch from "./HeaderSearch"; 
-import "../styles/sualoi.css"
+import { Link, useNavigate } from "react-router-dom";
+import HeaderSearch from "./HeaderSearch";
+import "../styles/sualoi.css";
 
 const Header = ({
   query = "",
   setQuery = () => {},
   onCartClick = () => {},
 }) => {
+  const navigate = useNavigate();
+
+  const isLoggedIn =
+    localStorage.getItem("isLoggedIn") === "true" ||
+    !!localStorage.getItem("user");
+
+  if (!isLoggedIn) {
+    return null;
+  }
+
+  const user = (() => {
+    try {
+      return JSON.parse(localStorage.getItem("user")) || null;
+    } catch (e) {
+      return null;
+    }
+  })();
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
   return (
     <header className="site-header">
-      <a href="/">
+      {/* Logo */}
+      <Link to="/users">
         <img src="/img/logo.png" alt="Logo" />
-      </a>
+      </Link>
 
+      {/* Menu chính */}
       <nav id="header">
         <ul>
-          <li><a href="/users">HÀNG MỚI VỀ</a></li>
           <li>
-            <a href="/ao-so-mi">ÁO NAM</a>
+            <Link to="/users">HÀNG MỚI VỀ</Link>
+          </li>
+          <li>
+            <Link to="/ao-so-mi">ÁO NAM</Link>
             <ul className="dropdown">
-              <li><a href="/ao-so-mi">Áo sơ mi</a></li>
-              <li><a href="/ao-thun">Áo thun</a></li>
-              <li><a href="/ao-Polo">Áo polo</a></li>
+              <li>
+                <Link to="/ao-so-mi">Áo sơ mi</Link>
+              </li>
+              <li>
+                <Link to="/ao-thun">Áo thun</Link>
+              </li>
+              <li>
+                <Link to="/ao-Polo">Áo polo</Link>
+              </li>
             </ul>
           </li>
           <li>
-            <a href="#">QUẦN NAM</a>
+            <Link to="#">QUẦN NAM</Link>
             <ul className="dropdown">
-              <li><a href="/quan-jeans">Quần jeans</a></li>
-              <li><a href="/quan-tay">Quần tây</a></li>
-              <li><a href="/quan-kaki">Quần kaki</a></li>
+              <li>
+                <Link to="/quan-jeans">Quần jeans</Link>
+              </li>
+              <li>
+                <Link to="/quan-tay">Quần tây</Link>
+              </li>
+              <li>
+                <Link to="/quan-kaki">Quần kaki</Link>
+              </li>
             </ul>
           </li>
-          <li><a href="/phu-kien">PHỤ KIỆN</a></li>
-          <li><a href="/giay-dep">GIÀY DÉP</a></li>
-          <li><a href="/outlet-safe">OUTLET SAFE</a></li>
+          <li>
+            <Link to="/phu-kien">PHỤ KIỆN</Link>
+          </li>
+          <li>
+            <Link to="/giay-dep">GIÀY DÉP</Link>
+          </li>
+          <li>
+            <Link to="/outlet-safe">OUTLET SAFE</Link>
+          </li>
         </ul>
       </nav>
 
       <div className="header__lf">
-        <HeaderSearch />
+        <HeaderSearch query={query} setQuery={setQuery} />
 
         <div className="header__lf-icon" onClick={onCartClick}>
           <i className="fa-solid fa-cart-shopping"></i>
         </div>
+
+        {user && (
+          <div className="header__account">
+            <span className="header__hello">
+              Xin chào,&nbsp;<b>{user.username || "User"}</b>
+            </span>
+            <br />
+            <button className="header__logout" onClick={handleLogout}>
+              Đăng xuất
+            </button>
+          </div>
+        )}
       </div>
+
     </header>
   );
 };
