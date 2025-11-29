@@ -1,4 +1,6 @@
 import React from "react";
+import HeaderSearch from "./HeaderSearch"; 
+import "../styles/sualoi.css"
 
 const Header = ({
   query = "",
@@ -37,17 +39,8 @@ const Header = ({
       </nav>
 
       <div className="header__lf">
-        <div className="header__lf-icon">
-          <input
-            type="text"
-            placeholder="Tìm sản phẩm..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <i className="fa-solid fa-magnifying-glass"></i>
-        </div>
+        <HeaderSearch />
 
-        {/* 👇 GIỎ HÀNG – GẮN onClick VÀO ĐÂY */}
         <div className="header__lf-icon" onClick={onCartClick}>
           <i className="fa-solid fa-cart-shopping"></i>
         </div>
