@@ -201,6 +201,19 @@ export const PaymentModal = ({ amount, onClose }) => {
               Khách thanh toán <b>{amount.toLocaleString("vi-VN")}đ</b> tiền mặt.
             </p>
             <p>Vui lòng thu đúng số tiền và xác nhận đơn hàng trong hệ thống.</p>
+            <button
+              className="confirm-payment-btn"
+              onClick={handleConfirmPayment}
+            >
+              xác nhận
+            </button>
+
+            {confirmed && (
+              <p className="payment-note">
+                ✅ Shop đã nhận thông tin xác nhận đơn hàng. Nếu cần hỗ trợ thêm, hãy
+                chat với shop ở góc dưới bên phải nhé.
+              </p>
+            )}
           </div>
         )}
       </div>
