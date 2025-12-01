@@ -13,5 +13,5 @@ export default function TawkChat() {
     s0.parentNode.insertBefore(s1, s0);
   }, []);
 
-  return null; // không cần render gì
+  return null;
 }
