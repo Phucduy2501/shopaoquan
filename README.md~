@@ -12,3 +12,21 @@ cài package.json
 
 3.npm run cypress
 
+cài môi trường test playwright 
+1.node -v 
+2.mkdir shop-quan-playwright
+cd shop-quan-playwright
+3.npm init -y
+4.npm install -D @playwright/test
+npx playwright install
+5.mkdir tests
+cd tests
+echo "// test file" > quan.spec.js
+
+
+chạy test playwright
+1.npx playwright test
+playwright.config.ts
+tests/
+test-results/
+chạy test :npx playwright test tests/first-test.spec.js
