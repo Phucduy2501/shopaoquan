@@ -1,0 +1,14 @@
+mở file cypress
+1.cài đặt cypress npm install cypress --save-dev
+
+2.npx cypress open
+
+cài package.json 
+"scripts": {
+  "cypress": "cypress open",
+  "cy:run": "cypress run"
+}
+
+
+3.npm run cypress
+

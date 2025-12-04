@@ -300,49 +300,47 @@ const handleRemoveItem = (id, size) => {
 
 
                 <div className="product-grid">
-                {loading && <p>Đang tải sản phẩm...</p>}
-                {error && !loading && <p className="error">{error}</p>}
-
-                {!loading && !error && filteredProducts.length === 0 && (
-                    <p>Không tìm thấy sản phẩm phù hợp.</p>
-                )}
-
-                {!loading &&
+                  {!loading &&
                     !error &&
                     filteredProducts.map((p) => (
-                     <div className="pro" key={p.id}>
-                    <div className="item-thumbs">
-                        {p.tag && (
-                        <span className="badge">
-                            <span className="offer">
-                            {p.tag === "khuyenmai"
-                                ? `SALE ${p.sale || ""}`
-                                : String(p.tag).toUpperCase()}
+                      <div
+                        className="pro product-card"   // ⬅ thêm product-card ở đây
+                        key={p.id}
+                        data-testid="product-card"     // (optional, cho test càng dễ)
+                      >
+                        <div className="item-thumbs">
+                          {p.tag && (
+                            <span className="badge">
+                              <span className="offer">
+                                {p.tag === "khuyenmai"
+                                  ? `SALE ${p.sale || ""}`
+                                  : String(p.tag).toUpperCase()}
+                              </span>
                             </span>
-                        </span>
-                        )}
+                          )}
 
-                        <img src={p.image} alt={p.name} />
+                          <img src={p.image} alt={p.name} />
 
-                        <button
-                        type="button"
-                        className="quick-cart-btn"
-                        onClick={() => openModal(p)}
-                        >
-                        <i className="fa-solid fa-cart-shopping" />
-                        </button>
-                    </div>
-
-                    <div className="proi">
-                        <h4>{p.name}</h4>
-                        <div className="sale">
-                        {formatCurrency(p.price)}
-                        {p.oldPrice && <em>{formatCurrency(p.oldPrice)}</em>}
+                          <button
+                            type="button"
+                            className="quick-cart-btn"
+                            onClick={() => openModal(p)}
+                          >
+                            <i className="fa-solid fa-cart-shopping" />
+                          </button>
                         </div>
-                    </div>
-                </div>
+
+                        <div className="proi">
+                          <h4>{p.name}</h4>
+                          <div className="sale">
+                            {formatCurrency(p.price)}
+                            {p.oldPrice && <em>{formatCurrency(p.oldPrice)}</em>}
+                          </div>
+                        </div>
+                      </div>
                     ))}
                 </div>
+
             </section>
 
             <div className="content-box">
